@@ -1,0 +1,11 @@
+body {
+	margin-top: 50px;  // For fixed navbar
+}
+
+@media print {
+	body { margin-top: 0 }
+}
+
+
+
+

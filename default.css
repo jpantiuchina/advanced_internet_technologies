@@ -1,0 +1,6 @@
+body {
+  margin-top: 50px; }
+
+@media print {
+  body {
+    margin-top: 0; } }
