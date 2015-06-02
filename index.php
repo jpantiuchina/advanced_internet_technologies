@@ -1,61 +1,18 @@
 <?php
 
-$db = new PDO('mysql:host=localhost;dbname=oksana;charset=utf8', 'oksana', 'UX7EWQKpUvVmj9wB');
-
+require_once __DIR__ . '/library/page.php';
+require_once __DIR__ . '/library/db.php';
 
 
 $siteName = 'My super site';
 
-
-
-class Page
-{
-	public $name;
-	public $menuName;
-	public $title;
-
-	function __construct($name, $menuName, $title)
-	{
-		$this->name     = $name;
-		$this->menuName = $menuName;
-		$this->title    = $title;
-	}
-
-	function echoHtml()
-	{
-		readfile("pages/{$this->name}.html");
-	}
-
-	function getMenuItemHtml()
-	{
-		global $currentPage; // PHP wants this
-
-		$result = '<li';
-		if ($currentPage == $this)
-			$result .= ' class=active';
-		$result .= '><a href="';
-		if ($this->name == 'index')
-			$result .= './'; // for home page...
-		else
-			$result .= "?page={$this->name}"; // ...for other pages
-		$result .= '">';
-		$result .= htmlspecialchars($this->menuName);
-		$result .= '</a></li>';
-
-		return $result;
-	}
-
-
-
-}
+$isAdmin = true;
+$db = new DB();
 
 
 /** @var Page[] $PAGES */
-$PAGES = [
-	'index'   => new Page('index'  , 'Home'   , 'Welcome to Super Site'),
-	'about'   => new Page('about'  , 'About'  , 'About Super Site'     ),
-	'contact' => new Page('contact', 'Contact', 'Contact Information'  ),
-];
+$PAGES = $db->getPages();
+
 
 
 $pageName = 'index';
@@ -93,7 +50,17 @@ $currentPage = $PAGES[$pageName];
 		</div>
 		<div id="navbar" class="navbar-collapse collapse">
 			<ul class="nav navbar-nav">
-				<?php foreach ($PAGES as $page) echo $page->getMenuItemHtml() ?>
+				<?php foreach ($PAGES as $page) echo $page->getMenuItemHtml($currentPage) ?>
+				<?php if ($isAdmin) { ?>
+					<li class="dropdown">
+						<a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-expanded="false">Admin <span class="caret"></span></a>
+						<ul class="dropdown-menu" role="menu">
+							<li><a href="add-page.php"><span class="glyphicon glyphicon-plus" aria-hidden="true"></span> Add page</a></li>
+							<li class="divider"></li>
+							<li><a href="delete-page.php?page=<?php echo $currentPage->name ?>" class="confirm-delete"><span class="glyphicon glyphicon-trash" aria-hidden="true"></span> Delete this page</a></li>
+						</ul>
+					</li>
+				<?php } ?>
 			</ul>
 		</div>
 	</div>
@@ -105,7 +72,7 @@ $currentPage = $PAGES[$pageName];
 
 	<h1><?php echo htmlspecialchars($currentPage->title) ?></h1>
 
-	<?php $currentPage->echoHtml() ?>
+	<?php echo $db->getPageHtml($currentPage) ?>
 
 	<hr>
 
@@ -117,5 +84,6 @@ $currentPage = $PAGES[$pageName];
 
 <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.2/jquery.min.js"></script>
 <script src="bootstrap/js/bootstrap.min.js"></script>
+<script src="default.js"></script>
 </body>
 </html>
