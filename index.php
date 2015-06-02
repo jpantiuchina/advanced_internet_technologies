@@ -1,6 +1,12 @@
 <?php
 
+$db = new PDO('mysql:host=localhost;dbname=oksana;charset=utf8', 'oksana', 'UX7EWQKpUvVmj9wB');
+
+
+
 $siteName = 'My super site';
+
+
 
 class Page
 {
@@ -22,7 +28,7 @@ class Page
 
 	function getMenuItemHtml()
 	{
-		global $currentPage;
+		global $currentPage; // PHP wants this
 
 		$result = '<li';
 		if ($currentPage == $this)
@@ -43,6 +49,7 @@ class Page
 
 }
 
+
 /** @var Page[] $PAGES */
 $PAGES = [
 	'index'   => new Page('index'  , 'Home'   , 'Welcome to Super Site'),
@@ -52,7 +59,7 @@ $PAGES = [
 
 
 $pageName = 'index';
-if (isset($_GET['page']))
+if (isset($_GET['page'])) // (on home page, 'page' param does not exist)
 	$pageName = $_GET['page'];
 
 $currentPage = $PAGES[$pageName];
