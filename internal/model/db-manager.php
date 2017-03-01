@@ -4,7 +4,7 @@
 require_once __DIR__ . '/page.php';
 
 
-class DB
+class DbManager
 {
 	private static $url  = 'mysql:host=localhost;dbname=oksana;charset=utf8';
 	private static $user = 'oksana';
@@ -53,7 +53,7 @@ class DB
 		return $this->getScalar("SELECT html FROM page WHERE `name`=?", [$page->name]);
 	}
 
-	public function createPage()
+	public function createPage(Page $newPage)
 	{
 		$order = $this->getScalar("SELECT MAX(`order`) + 10 FROM page");
 
@@ -61,19 +61,40 @@ class DB
 			INSERT INTO page (`name`, menuTitle, title, `order`)
 			VALUES (:name, :menuTitle, :title, :order)",
 			[
-				':name'      => 'new-page',
-				':menuTitle' => 'New Page',
-				':title'     => 'New Page',
+				':name'      => $newPage->name,
+				':menuTitle' => $newPage->menuTitle,
+				':title'     => $newPage->title,
 				':order'     => $order,
 			]
 		);
-
-		return 'new-page';
 	}
 
-	public function deletePage($pageName)
+	public function deletePage(Page $page)
 	{
-		$this->executeQuery("DELETE FROM page WHERE name=?", [$pageName]);
+		$this->executeQuery("DELETE FROM page WHERE name=?", [$page->name]);
+	}
+
+
+	public function updatePage(Page $oldPage, Page $newPage, $newHtml)
+	{
+		$this->executeQuery("
+			UPDATE
+				page
+			SET
+				name      = :newName,
+				menuTitle = :newMenuTitle,
+				title     = :newTitle,
+				html      = :newHtml
+			WHERE
+				name      = :oldName
+		",
+		[
+			':newName'      => $newPage->name,
+			':newMenuTitle' => $newPage->menuTitle,
+			':newTitle'     => $newPage->title,
+			':newHtml'      => $newHtml,
+			':oldName'      => $oldPage->name,
+		]);
 	}
 }
 
