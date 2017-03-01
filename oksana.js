@@ -1,4 +1,10 @@
-$('.confirm-delete').click(function()
+$(document).ready(function()
 {
-    return confirm("Are you sure you want to delete?");
+
+	$('.confirm-delete').click(function()
+	{
+	    return confirm("Are you sure you want to delete?");
+	});
+
 });
+

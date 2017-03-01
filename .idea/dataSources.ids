@@ -1,0 +1,20 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<component name="dataSourceStorage">
+  <data-source name="MySQL - oksana@localhost" uuid="1f084e3c-83ca-4af1-ad71-53a3fd9507d0">
+    <database-info product="MySQL" version="5.0.82sp1" jdbc-version="4.0" driver-name="MySQL Connector Java" driver-version="mysql-connector-java-5.1.35 ( Revision: 5fb9c5849535c13917c2cf9baaece6ef9693ef27 )">
+      <extra-name-characters>#@</extra-name-characters>
+      <identifier-quote-string>`</identifier-quote-string>
+    </database-info>
+    <case-sensitivity plain-identifiers="exact" quoted-identifiers="exact"/>
+    <schema name="" catalog="oksana"/>
+    <table name="page" schema="" catalog="oksana" type="TABLE">
+      <column name="name" sqlType="VARCHAR" precision="31" scale="0" nullable="false" jdbcType="12"/>
+      <column name="order" sqlType="INT" precision="10" scale="0" nullable="false" jdbcType="4" def="MA=="/>
+      <column name="menuTitle" sqlType="VARCHAR" precision="31" scale="0" nullable="false" jdbcType="12"/>
+      <column name="title" sqlType="VARCHAR" precision="127" scale="0" nullable="false" jdbcType="12"/>
+      <column name="html" sqlType="LONGTEXT" precision="2147483647" scale="0" nullable="false" jdbcType="-1"/>
+      <primary-key name="PRIMARY" columns="name"/>
+      <index name="order" unique="false" columns="order"/>
+    </table>
+  </data-source>
+</component>

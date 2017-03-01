@@ -1,6 +1,50 @@
 body {
-  margin-top: 50px; }
+  overflow-y: scroll; }
 
 @media print {
   body {
-    margin-top: 9px; } }
+    margin-top: 0; } }
+.navbar {
+  margin-bottom: 0; }
+
+.glyphicon {
+  width: 14px !important;
+  height: 14px !important; }
+
+html {
+  position: relative;
+  min-height: 100%; }
+
+body {
+  margin-bottom: 38px; }
+
+footer {
+  width: 100%;
+  background: #fbfbfb;
+  border-top: solid 1px #efefef;
+  position: absolute;
+  bottom: 0;
+  height: 38px; }
+
+footer p {
+  color: #9f9f9f;
+  margin-top: 10px;
+  font-size: 12px; }
+
+footer .login-link {
+  float: right; }
+
+footer .login-link a {
+  color: #e7e7e7; }
+
+.login-form {
+  max-width: 30em;
+  padding: 5px 30px 15px;
+  margin: 50px auto;
+  background: #f7f7f7;
+  -webkit-border-radius: 5px;
+  -moz-border-radius: 5px;
+  border-radius: 5px;
+  -webkit-box-shadow: rgba(0, 0, 0, 0.05) 0 0 0 1px, #afafaf 0 14px 50px 0;
+  -moz-box-shadow: rgba(0, 0, 0, 0.05) 0 0 0 1px, #afafaf 0 14px 50px 0;
+  box-shadow: rgba(0, 0, 0, 0.05) 0 0 0 1px, #afafaf 0 14px 50px 0; }

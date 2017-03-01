@@ -1,0 +1,19 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project version="4">
+  <component name="dataSourceStorageLocal">
+    <data-source name="MySQL - oksana@localhost" uuid="1f084e3c-83ca-4af1-ad71-53a3fd9507d0">
+      <secret-storage>master_key</secret-storage>
+      <user-name>oksana</user-name>
+      <schema-pattern>oksana.*</schema-pattern>
+      <default-schemas>oksana.*</default-schemas>
+      <ssh-properties>
+        <enabled>true</enabled>
+        <proxy-host>oksana.i-erdve.lt</proxy-host>
+        <proxy-port>22</proxy-port>
+        <secret-storage>master_key</secret-storage>
+        <user>oksana</user>
+        <use-password>true</use-password>
+      </ssh-properties>
+    </data-source>
+  </component>
+</project>

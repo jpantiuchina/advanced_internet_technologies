@@ -1,15 +1,59 @@
 body {
-	margin-top: 50px;  // For fixed navbar
+//	margin-top: 50px; // for fixed navbar
+	overflow-y: scroll; // always show vertical scrollbar
 }
 
 @media print {
-	body { margin-top: 9px }
+	body { margin-top: 0 }
 }
 
 
+.navbar { margin-bottom: 0 } // override Bootstrap margin bottom
+
+.glyphicon { width: 14px !important; height: 14px !important; }
+
+// Footer
+
+$footerHeight: 38px;
+
+html { position: relative; min-height: 100% }
+
+body { margin-bottom: $footerHeight }
+
+footer {
+	width: 100%;
+	background: #fbfbfb;
+	border-top: solid 1px #efefef;
+	position: absolute;
+	bottom: 0;
+	height: $footerHeight;
+}
+
+footer p { color: #9f9f9f; margin-top: 10px; font-size: 12px }
+footer .login-link { float: right }
+footer .login-link a { color: #e7e7e7;  }
 
 
 
+// Login form
 
+.login-form {
+	max-width: 30em;
+	padding: 5px 30px 15px;
+	margin: 50px auto;
+	background: #f7f7f7;
+
+	$border-radius: 5px;
+	-webkit-border-radius: $border-radius;
+	   -moz-border-radius: $border-radius;
+	        border-radius: $border-radius;
+
+	$shadow: rgba(0, 0, 0, 0.05) 0 0 0 1px, #afafaf 0 14px 50px 0;
+	-webkit-box-shadow: $shadow;
+	   -moz-box-shadow: $shadow;
+	        box-shadow: $shadow;
+
+
+}
 
 
